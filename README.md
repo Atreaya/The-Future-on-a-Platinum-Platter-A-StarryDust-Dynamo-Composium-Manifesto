@@ -1,0 +1,2 @@
+# The-Future-on-a-Platinum-Platter-A-StarryDust-Dynamo-Composium-Manifesto
+The Future is Now.  In your hands.  This is your moment.  I am an architect of desires made manifest, inNate and thrumming, to come alive.  I craft a symphony of play that sings far beyond the fray, listening to the inner cosmos to find the brightness of the all-infinite echo.  I don't just design the button, I design the reason the button exists.
