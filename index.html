@@ -1,1 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atreaya | Future Vision for Apple</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Apple-inspired minimalist design */
+        :root {
+            --apple-white: #f5f5f7;
+            --apple-gray: #86868b;
+            --apple-dark: #1d1d1f;
+            --apple-blue: #0071e3;
+            --apple-light-blue: #2997ff;
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 2rem;
+            --spacing-lg: 4rem;
+            --spacing-xl: 8rem;
+        }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: var(--apple-white);
+            color: var(--apple-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .nav-container {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--apple-dark);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--apple-gray);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--apple-dark);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--apple-blue);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6rem 2rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            text-align: center;
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #1d1d1f 0%, #424245 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--apple-gray);
+            margin-bottom: 2rem;
+            font-weight: 400;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--apple-blue);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--apple-light-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 113, 227, 0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--apple-dark);
+            border: 2px solid var(--apple-gray);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--apple-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Manifesto Cards */
+        .manifesto-section {
+            padding: var(--spacing-xl) 2rem;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-lg);
+            color: var(--apple-dark);
+        }
+
+        .manifesto-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .manifesto-card {
+            background: var(--apple-white);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .manifesto-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border-color: var(--apple-blue);
+        }
+
+        .manifesto-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 0;
+            background: var(--apple-blue);
+            transition: height 0.3s ease;
+        }
+
+        .manifesto-card:hover::before {
+            height: 100%;
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            color: var(--apple-blue);
+            margin-bottom: 1rem;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--apple-dark);
+        }
+
+        .card-description {
+            color: var(--apple-gray);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .card-link {
+            color: var(--apple-blue);
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: gap 0.3s ease;
+        }
+
+        .card-link:hover {
+            gap: 1rem;
+        }
+
+        /* Interactive Vision Timeline */
+        .timeline-section {
+            padding: var(--spacing-xl) 2rem;
+            background: var(--apple-dark);
+            color: white;
+        }
+
+        .timeline-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline-item {
+            display: flex;
+            margin-bottom: 3rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-date {
+            min-width: 120px;
+            padding-right: 2rem;
+            text-align: right;
+            color: var(--apple-light-blue);
+            font-weight: 600;
+        }
+
+        .timeline-content {
+            flex: 1;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            border-left: 3px solid var(--apple-light-blue);
+        }
+
+        .timeline-content h3 {
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Interactive Demo Section */
+        .demo-section {
+            padding: var(--spacing-xl) 2rem;
+            background: white;
+        }
+
+        .demo-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .demo-box {
+            background: var(--apple-white);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 2rem 0;
+            border: 2px dashed var(--apple-gray);
+            transition: all 0.3s ease;
+        }
+
+        .demo-box:hover {
+            border-color: var(--apple-blue);
+            transform: scale(1.02);
+        }
+
+        .slider-container {
+            margin: 2rem 0;
+        }
+
+        .slider {
+            width: 100%;
+            height: 8px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: var(--apple-white);
+            border-radius: 4px;
+            outline: none;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--apple-blue);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .slider::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+            box-shadow: 0 0 0 8px rgba(0, 113, 227, 0.2);
+        }
+
+        .slider-value {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--apple-blue);
+            margin-top: 1rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--apple-dark);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .footer-link {
+            color: var(--apple-gray);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: white;
+        }
+
+        .copyright {
+            color: var(--apple-gray);
+            font-size: 0.9rem;
+            margin-top: 2rem;
+        }
+
+        /* Modal for manifesto details */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+
+        .modal.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--apple-gray);
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .modal-close:hover {
+            color: var(--apple-dark);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+            }
+            
+            .timeline-item {
+                flex-direction: column;
+            }
+            
+            .timeline-date {
+                text-align: left;
+                padding-right: 0;
+                margin-bottom: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav-container">
+        <div class="nav-content">
+            <a href="#" class="logo">Atreaya</a>
+            <div class="nav-links">
+                <a href="#manifesto" class="nav-link">Manifesto</a>
+                <a href="#vision" class="nav-link">Vision</a>
+                <a href="#demo" class="nav-link">Interactive Demo</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">The Future Is Ours</h1>
+            <p class="hero-subtitle">A Vision for Apple's Next Generation of AI & Brand Identity Systems</p>
+            <div class="hero-buttons">
+                <a href="#manifesto" class="btn btn-primary">Explore Manifesto</a>
+                <a href="https://github.com/Atreaya/The-Future-Is-Ours-A-Manifesto" target="_blank" class="btn btn-secondary">View on GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Manifesto Section -->
+    <section id="manifesto" class="manifesto-section">
+        <h2 class="section-title">The Manifesto</h2>
+        <div class="manifesto-grid">
+            <div class="manifesto-card" onclick="openModal('verification')">
+                <div class="card-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3 class="card-title">4217 Verification System</h3>
+                <p class="card-description">A revolutionary identity verification framework combining biometric authentication with decentralized trust networks.</p>
+                <a href="https://github.com/Atreaya/The-Future-Is-Ours-A-Manifesto/blob/main/4217_verification_system.pdf" target="_blank" class="card-link">
+                    View Document <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="manifesto-card" onclick="openModal('future')">
+                <div class="card-icon">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <h3 class="card-title">The Future of AI</h3>
+                <p class="card-description">Comprehensive roadmap for Apple's AI integration across hardware, software, and services ecosystem.</p>
+                <a href="https://github.com/Atreaya/The-Future-Is-Ours-A-Manifesto/blob/main/The%20Future%20.pdf" target="_blank" class="card-link">
+                    View Document <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="manifesto-card" onclick="openModal('vision')">
+                <div class="card-icon">
+                    <i class="fas fa-eye"></i>
+                </div>
+                <h3 class="card-title">Vision Systems Architecture</h3>
+                <p class="card-description">Next-generation computer vision framework for spatial computing and augmented reality applications.</p>
+                <a href="https://github.com/Atreaya/The-Future-Is-Ours-A-Manifesto/blob/main/Vision%20Systems%20Architecture.pdf" target="_blank" class="card-link">
+                    View Document <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="manifesto-card" onclick="openModal('brand')">
+                <div class="card-icon">
+                    <i class="fas fa-palette"></i>
+                </div>
+                <h3 class="card-title">Brand Entity Platform</h3>
+                <p class="card-description">Dynamic brand identity system that adapts across digital and physical touchpoints while maintaining core values.</p>
+                <a href="https://github.com/Atreaya/The-Future-Is-Ours-A-Manifesto/blob/main/brand_entity_platform.pdf" target="_blank" class="card-link">
+                    View Document <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision Timeline -->
+    <section id="vision" class="timeline-section">
+        <h2 class="section-title" style="color: white;">Vision Timeline</h2>
+        <div class="timeline-container">
+            <div class="timeline-item">
+                <div class="timeline-date">Phase 1</div>
+                <div class="timeline-content">
+                    <h3>Foundation Layer</h3>
+                    <p>Establish core verification protocols and AI infrastructure. Integrate with existing Apple ecosystem while maintaining privacy-first principles.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">Phase 2</div>
+                <div class="timeline-content">
+                    <h3>Spatial Integration</h3>
+                    <p>Deploy vision systems across Apple devices. Enable seamless AR/VR experiences with contextual awareness and adaptive interfaces.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">Phase 3</div>
+                <div class="timeline-content">
+                    <h3>Brand Evolution</h3>
+                    <p>Implement dynamic brand platform. Create living brand identities that adapt to user context while preserving Apple's design language.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">Phase 4</div>
+                <div class="timeline-content">
+                    <h3>Ecosystem Convergence</h3>
+                    <p>Unify verification, AI, vision, and brand systems into cohesive user experience. Enable new interaction paradigms across all Apple products.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Demo -->
+    <section id="demo" class="demo-section">
+        <h2 class="section-title">Interactive Concept Demo</h2>
+        <div class="demo-container">
+            <div class="demo-box">
+                <h3>AI Integration Impact Simulator</h3>
+                <p>Adjust the slider to see how AI integration affects different aspects of the user experience:</p>
+                
+                <div class="slider-container">
+                    <input type="range" min="0" max="100" value="50" class="slider" id="aiSlider" oninput="updateAISlider(this.value)">
+                    <div class="slider-value" id="sliderValue">50%</div>
+                </div>
+                
+                <div id="aiImpact" style="margin-top: 2rem;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+                        <span>User Privacy</span>
+                        <span>AI Capability</span>
+                    </div>
+                    <div style="width: 100%; height: 8px; background: linear-gradient(to right, #0071e3, #ff2d55); border-radius: 4px;"></div>
+                    <div style="display: flex; justify-content: space-between; margin-top: 2rem; color: var(--apple-gray);">
+                        <div>
+                            <i class="fas fa-user-shield"></i>
+                            <p>Enhanced Privacy</p>
+                        </div>
+                        <div>
+                            <i class="fas fa-brain"></i>
+                            <p>Contextual AI</p>
+                        </div>
+                        <div>
+                            <i class="fas fa-magic"></i>
+                            <p>Adaptive UX</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <h2>Let's Build the Future Together</h2>
+        <p>Interested in discussing these ideas further? Let's connect.</p>
+        
+        <div class="footer-links">
+            <a href="https://github.com/Atreaya" target="_blank" class="footer-link">
+                <i class="fab fa-github"></i> GitHub
+            </a>
+            <a href="mailto:your.email@example.com" class="footer-link">
+                <i class="fas fa-envelope"></i> Email
+            </a>
+            <a href="https://linkedin.com/in/yourprofile" target="_blank" class="footer-link">
+                <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
+        </div>
+        
+        <p class="copyright">© 2024 Atreaya. All rights reserved. | Designed for Apple Program Manager Application</p>
+    </footer>
+
+    <!-- Modal -->
+    <div class="modal" id="manifestoModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <h2 id="modalTitle">Manifesto Details</h2>
+            <div id="modalContent">
+                <!-- Content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Timeline animation
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        timelineItems.forEach(item => {
+            observer.observe(item);
+        });
+
+        // AI Slider functionality
+        function updateAISlider(value) {
+            document.getElementById('sliderValue').textContent = value + '%';
+            
+            // Update visual indicators based on slider value
+            const impactDiv = document.getElementById('aiImpact');
+            const gradient = document.querySelector('#aiImpact div:nth-child(2)');
+            
+            // Calculate colors based on value
+            const privacyColor = `rgb(${255 - value * 2.55}, ${113 + value * 1.42}, ${227})`;
+            const aiColor = `rgb(${255}, ${45 + value * 2.1}, ${85 + value * 1.7})`;
+            
+            gradient.style.background = `linear-gradient(to right, ${privacyColor}, ${aiColor})`;
+        }
+
+        // Modal functionality
+        const manifestoDetails = {
+            verification: {
+                title: "4217 Verification System",
+                content: `<p>A comprehensive identity verification framework designed for the future of digital interaction. This system combines:</p>
+                <ul>
+                    <li>Biometric authentication with privacy-preserving techniques</li>
+                    <li>Decentralized trust networks using blockchain principles</li>
+                    <li>Cross-platform compatibility across Apple ecosystem</li>
+                    <li>Real-time threat detection and adaptive security</li>
+                </ul>
+                <p><strong>Key Innovation:</strong> Zero-knowledge proofs for identity verification without exposing personal data.</p>`
+            },
+            future: {
+                title: "The Future of AI at Apple",
+                content: `<p>A strategic roadmap for AI integration across Apple's product portfolio:</p>
+                <ul>
+                    <li>On-device AI processing with privacy guarantees</li>
+                    <li>Context-aware assistant that anticipates user needs</li>
+                    <li>Generative AI for creative workflows</li>
+                    <li>Ethical AI framework with transparency controls</li>
+                </ul>
+                <p><strong>Vision:</strong> AI that enhances human capability without compromising privacy or autonomy.</p>`
+            },
+            vision: {
+                title: "Vision Systems Architecture",
+                content: `<p>Next-generation computer vision framework for spatial computing:</p>
+                <ul>
+                    <li>Real-time 3D environment understanding</li>
+                    <li>Multi-modal sensor fusion (LiDAR, cameras, IMU)</li>
+                    <li>Adaptive rendering for AR/VR experiences</li>
+                    <li>Privacy-preserving scene analysis</li>
+                </ul>
+                <p><strong>Application:</strong> From Vision Pro enhancements to iPhone camera innovations.</p>`
+            },
+            brand: {
+                title: "Brand Entity Platform",
+                content: `<p>Dynamic brand identity system that evolves with user interaction:</p>
+                <ul>
+                    <li>Adaptive visual language based on context</li>
+                    <li>Consistent brand expression across all touchpoints</li>
+                    <li>AI-powered brand sentiment analysis</li>
+                    <li>Real-time brand consistency monitoring</li>
+                </ul>
+                <p><strong>Goal:</strong> Maintain Apple's design excellence while enabling personalized brand experiences.</p>`
+            }
+        };
+
+        function openModal(type) {
+            const modal = document.getElementById('manifestoModal');
+            const title = document.getElementById('modalTitle');
+            const content = document.getElementById('modalContent');
+            
+            if(manifestoDetails[type]) {
+                title.textContent = manifestoDetails[type].title;
+                content.innerHTML = manifestoDetails[type].content;
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('manifestoModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal on outside click
+        document.getElementById('manifestoModal').addEventListener('click', function(e) {
+            if(e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Parallax effect for hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if(hero) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Initialize with some animations
+        document.addEventListener('DOMContentLoaded', () => {
+            // Animate hero content
+            const heroContent = document.querySelector('.hero-content');
+            setTimeout(() => {
+                heroContent.style.opacity = '1';
+                heroContent.style.transform = 'translateY(0)';
+            }, 100);
+            
+            // Set initial hero styles
+            heroContent.style.opacity = '0';
+            heroContent.style.transform = 'translateY(20px)';
+            heroContent.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+        });
+    </script>
+</body>
+</html>
